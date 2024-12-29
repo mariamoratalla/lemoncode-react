@@ -1,57 +1,75 @@
 import { AppLayout } from "@/layouts";
 import React from "react";
 import { MovementListVm } from "./movement-list.vm";
+import { useParams } from "react-router-dom";
 
 export const MovementList: React.FC = () => {
   const movimientos: MovementListVm[] = [
     {
-      id: 1,
-      fecha: new Date(2019, 12, 9),
-      fechaValor: new Date(2019, 12, 9),
-      descripcion: "Nómina noviembre",
-      importe: 900,
-      saldoDisponible: 1000,
+      id: "1",
+      transaction: new Date(2019, 11, 9),
+      realTransaction: new Date(2019, 11, 9),
+      description: "Nómina noviembre",
+      amount: 900,
+      balance: 1000,
+      accountId: "1",
     },
     {
-      id: 2,
-      fecha: new Date(2019, 12, 7),
-      fechaValor: new Date(2019, 12, 3),
-      descripcion: "Alquiler noviembre",
-      importe: -400,
-      saldoDisponible: 500,
+      id: "2",
+      transaction: new Date(2019, 11, 7),
+      realTransaction: new Date(2019, 11, 3),
+      description: "Alquiler noviembre",
+      amount: -400,
+      balance: 500,
+      accountId: "1",
     },
     {
-      id: 3,
-      fecha: new Date(2019, 12, 6),
-      fechaValor: new Date(2019, 12, 9),
-      descripcion: "Mercadona",
-      importe: -100,
-      saldoDisponible: 400,
+      id: "3",
+      transaction: new Date(2019, 11, 6),
+      realTransaction: new Date(2019, 11, 9),
+      description: "Mercadona",
+      amount: -100,
+      balance: 400,
+      accountId: "1",
     },
     {
-      id: 5,
-      fecha: new Date(2019, 12, 23),
-      fechaValor: new Date(2019, 12, 9),
-      descripcion: "Extra diciembre",
-      importe: 900,
-      saldoDisponible: 1300,
+      id: "4",
+      transaction: new Date(2019, 11, 23),
+      realTransaction: new Date(2019, 11, 9),
+      description: "Extra diciembre",
+      amount: 900,
+      balance: 1300,
+      accountId: "1",
+    },
+    {
+      id: "5",
+      transaction: new Date(2019, 11, 23),
+      realTransaction: new Date(2019, 11, 9),
+      description: "Extra junio",
+      amount: 900,
+      balance: 1300,
+      accountId: "2",
     },
   ];
+
+  const { id } = useParams();
 
   return (
     <AppLayout>
       <div>Movement list</div>
-      {movimientos.map((movimiento) => {
-        return (
-          <div>
-            <span key={movimiento.id}>{movimiento.fecha.toString()}</span>
-            <span key={movimiento.id}>{movimiento.fechaValor.toString()}</span>
-            <span key={movimiento.id}>{movimiento.descripcion}</span>
-            <span key={movimiento.id}>{movimiento.importe}</span>
-            <span key={movimiento.id}>{movimiento.saldoDisponible}</span>
-          </div>
-        );
-      })}
+      {movimientos
+        .filter((movimiento) => movimiento.accountId === id)
+        .map((movimiento) => {
+          return (
+            <div key={movimiento.id}>
+              <span>{movimiento.transaction.toLocaleDateString()}</span>
+              <span>{movimiento.realTransaction.toLocaleDateString()}</span>
+              <span>{movimiento.description}</span>
+              <span>{movimiento.amount}</span>
+              <span>{movimiento.balance}</span>
+            </div>
+          );
+        })}
     </AppLayout>
   );
 };

@@ -1,8 +1,9 @@
 export interface MovementListVm {
-  id: number;
-  fecha: Date;
-  fechaValor: Date;
-  descripcion: string;
-  importe: number;
-  saldoDisponible: number;
+  id: string;
+  transaction: Date;
+  realTransaction: Date;
+  description: string;
+  amount: number;
+  balance: number;
+  accountId: string;
 }

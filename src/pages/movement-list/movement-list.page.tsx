@@ -8,6 +8,7 @@ import classes from "./movement-list.page.module.css";
 import { AccountInfo } from "./account-info.vm";
 import { getAccountInfo } from "./api";
 import { mapAccountInfoFromApiToVm } from "./account-info.mapper";
+import { AccountInfoComponent, MovementListTableComponent } from "./components";
 
 export const MovementList: React.FC = () => {
   const [movementList, setMovementList] = React.useState<MovementListVm[]>([]);
@@ -29,29 +30,9 @@ export const MovementList: React.FC = () => {
   return (
     <AppLayout>
       <div className={classes.root}>
-        <div className={classes.headerContainer}>
-          <h1>Saldos y Últimos movimientos</h1>
-          <div className={classes.saldoContainer}>
-            <p className={classes.titulo}>SALDO DISPONIBLE</p>
-            <p className={classes.saldo}>{accountInfo?.balance}€</p>
-          </div>
-        </div>
-        <div className={classes.cuentaContainer}>
-          <p>Alias: {accountInfo?.name}</p>
-          <p>IBAN: {accountInfo?.iban}</p>
-        </div>
+        <AccountInfoComponent accountInfo={accountInfo!} />
+        <MovementListTableComponent movements={movementList} />
       </div>
-      {movementList.map((movimiento) => {
-        return (
-          <div key={movimiento.id}>
-            <span>{movimiento.transaction.toLocaleDateString()}</span>
-            <span>{movimiento.realTransaction.toLocaleDateString()}</span>
-            <span>{movimiento.description}</span>
-            <span>{movimiento.amount}</span>
-            <span>{movimiento.balance}</span>
-          </div>
-        );
-      })}
     </AppLayout>
   );
 };

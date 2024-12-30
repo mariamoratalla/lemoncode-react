@@ -40,7 +40,7 @@ export const AccountListItem: React.FC<Props> = (props) => {
       </span>
       <span className={classes.dataCell}>{accountItem.name}</span>
       <span className={`${classes.dataCell} ${classes.alignRight}`}>
-        {accountItem.balance}
+        {accountItem.balance} €
       </span>
       <span className={`${classes.dataCell} ${classes.alignRight}`}>
         {accountItem.lastTransaction.toLocaleDateString()}

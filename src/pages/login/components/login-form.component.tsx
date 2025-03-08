@@ -34,7 +34,7 @@ export const LoginFormComponent: React.FC<Props> = (props) => {
     const validateFields = validateForm(credentials);
     setErrors(validateFields.errors);
 
-    if (validateFields.succeeded) {
+    if (validateFields.succeded) {
       onLogin(credentials);
     }
   };

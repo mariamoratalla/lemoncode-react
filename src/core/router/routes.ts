@@ -9,5 +9,6 @@ export const appRoutes = {
     editAccount: "/edit-account/:id",
     movements: "/movements/:id",
     transfer: routesPerfixes.transfer,
-    transferFromAccount: `${routesPerfixes.transfer}/:id`
+    transferFromAccount: `${routesPerfixes.transfer}/:id`,
+    addAccount: "/add-account"
 }

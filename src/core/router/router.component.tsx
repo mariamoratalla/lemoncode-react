@@ -7,6 +7,7 @@ import {
 } from "@/pages";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { appRoutes } from "./routes";
+import { AddAccount } from "@/pages/add-account";
 
 export const Router = () => {
   return (
@@ -21,6 +22,7 @@ export const Router = () => {
           path={appRoutes.transferFromAccount}
           element={<Transfer />}
         ></Route>
+        <Route path={appRoutes.addAccount} element={<AddAccount />}></Route>
       </Routes>
     </BrowserRouter>
   );

@@ -1,3 +1,4 @@
+import { REQUIRED_FIELD_MESSAGE } from "../transfer/validations/validation.const";
 import { validateForm } from "./login.validation";
 import { Credentials } from "./login.vm";
 
@@ -13,7 +14,7 @@ describe("pages/login/login.validation.ts", () => {
     const result = validateForm(credentials);
 
     // Assert
-    expect(result.succeeded).toBeTruthy();
+    expect(result.succeded).toBeTruthy();
     expect(result.errors.user).toEqual("");
     expect(result.errors.password).toEqual("");
   });
@@ -31,8 +32,8 @@ describe("pages/login/login.validation.ts", () => {
     const result = validateForm(credentials);
 
     // Assert
-    expect(result.succeeded).toBeFalsy();
-    expect(result.errors.user).toEqual("Debe informar el campo usuario");
+    expect(result.succeded).toBeFalsy();
+    expect(result.errors.user).toEqual(REQUIRED_FIELD_MESSAGE);
     expect(result.errors.password).toEqual("");
   });
 });

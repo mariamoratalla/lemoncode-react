@@ -108,5 +108,39 @@
       "accountId": "3"
     }
   ],
-  "transfer": []
+  "transfer": [
+    {
+      "accountId": "1",
+      "amount": "15",
+      "concept": "fsdfdsf",
+      "iban": "ES6621000418401234567891",
+      "name": "María",
+      "notes": "sdfdsfds",
+      "transferDate": "",
+      "realTransferDate": "",
+      "id": 1
+    },
+    {
+      "accountId": "1",
+      "amount": "15",
+      "concept": "fsdfdsf",
+      "iban": "ES6621000418401234567891",
+      "name": "María",
+      "notes": "sdfdsfds",
+      "transferDate": "",
+      "realTransferDate": "",
+      "id": 2
+    },
+    {
+      "accountId": "1",
+      "amount": "15",
+      "concept": "fsdfdsf",
+      "iban": "ES6621000418401234567891",
+      "name": "María",
+      "notes": "sdfdsfds",
+      "transferDate": "",
+      "realTransferDate": "",
+      "id": 3
+    }
+  ]
 }

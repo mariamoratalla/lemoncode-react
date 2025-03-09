@@ -1,0 +1,26 @@
+.form-container {
+  border: none;
+  border-bottom: 1px solid var(--secondary-color);
+  padding: 40px 0;
+}
+
+.form-container div {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+}
+
+.form-container label {
+  margin-right: 20px;
+  min-width: 300px;
+  text-align: right;
+}
+
+.input {
+  width: 200px;
+}
+
+.button {
+  margin: 10px 0 10px 320px;
+}

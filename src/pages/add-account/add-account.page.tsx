@@ -3,10 +3,25 @@ import { AppLayout } from "@/layouts";
 import classes from "./add-account.page.module.css";
 import { AddAccountForm } from "./components";
 import { NewAccountVm } from "./add-account.vm";
+import { mapAccountFromVmToApi } from "./add-account.mapper";
+import { saveAccount } from "./api/add-account.api";
+import { useNavigate } from "react-router-dom";
+import { appRoutes } from "@/core/router";
 
 export const AddAccount: React.FC = () => {
-  const handleAddAccount = (accountInfo: NewAccountVm) =>
-    console.log(accountInfo);
+  const navigate = useNavigate();
+
+  const handleAddAccount = (accountInfo: NewAccountVm) => {
+    const newAccount = mapAccountFromVmToApi(accountInfo);
+    saveAccount(newAccount).then((result) => {
+      if (result) {
+        alert("La cuenta se ha creado con éxito");
+        navigate(appRoutes.accountList);
+      } else {
+        alert("Error al crear la cuenta");
+      }
+    });
+  };
 
   return (
     <AppLayout>

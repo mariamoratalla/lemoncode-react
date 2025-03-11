@@ -1,6 +1,11 @@
 import React from "react";
-import { createNewEmptyAccount, NewAccountVm } from "../add-account.vm";
+import {
+  createNewEmptyAccount,
+  createNewEmptyAccountError,
+  NewAccountVm,
+} from "../add-account.vm";
 import classes from "./add-account-form.component.module.css";
+import { validateForm } from "../validations";
 
 interface Props {
   onAddAccount: (account: NewAccountVm) => void;
@@ -9,6 +14,7 @@ interface Props {
 export const AddAccountForm: React.FC<Props> = (props) => {
   const { onAddAccount } = props;
   const [account, setAccount] = React.useState(createNewEmptyAccount());
+  const [errors, setErrors] = React.useState(createNewEmptyAccountError());
 
   React.useEffect(() => {
     setAccount({ ...account });
@@ -19,21 +25,27 @@ export const AddAccountForm: React.FC<Props> = (props) => {
       | React.ChangeEvent<HTMLInputElement>
       | React.ChangeEvent<HTMLSelectElement>
   ) => {
-    onAddAccount({ ...account, [e.target.name]: e.target.value });
+    setAccount({ ...account, [e.target.name]: e.target.value });
   };
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    onAddAccount(account);
+
+    const validation = validateForm(account);
+    setErrors(validation.errors);
+
+    if (validation.succeded) {
+      onAddAccount(account);
+    }
   };
 
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={handleSubmit}>
       <div className={classes.formContainer}>
         <div>
           <label>Tipo de cuenta:</label>
           <select
-            name="tipo"
+            name="type"
             className={classes.input}
             onChange={handleFieldChange}
           >
@@ -42,6 +54,7 @@ export const AddAccountForm: React.FC<Props> = (props) => {
             <option value="2">Cuenta de Ahorro</option>
             <option value="3">Cuenta de Nómina</option>
           </select>
+          <p className={classes.error}>{errors.type}</p>
         </div>
         <div>
           <label>Alias:</label>
@@ -51,6 +64,7 @@ export const AddAccountForm: React.FC<Props> = (props) => {
             className={classes.input}
             onChange={handleFieldChange}
           />
+          <p className={classes.error}>{errors.alias}</p>
         </div>
       </div>
       <button type="submit" className={classes.button}>
